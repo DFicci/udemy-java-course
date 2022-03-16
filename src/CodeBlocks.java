@@ -1,38 +1,70 @@
 public class CodeBlocks {
+
+    //learning codeblocks as well as using methods... refactored code.
+
     public static void main(String[] args) {
-        boolean gameOver = true;
-        int score = 5000;
-        int levelCompleted = 5;
-        int bonus = 100;
 
-        if (score <= 5000) {
-            System.out.println("your score was less than 5000");
-        } else {
-            System.out.println("got here");
-        }
+        calculateScore(true, 5000, 5, 100);
 
-        if (gameOver == true) {
-            int finalScore = score + (levelCompleted * bonus);
-            System.out.println("your final score was " + finalScore);
-        }
+        calculateScore(true, 10000, 8, 200);
 
-        //Challenge: Print out a second score , Score set to 10000 , Level completed set to 8, Bonus set to 200
-        //Make sure the first printout above still displays as well.
+        int highScorePosition = calculateHighScorePosition(1500);
+        displayHighScorePosition("Daniel", highScorePosition);
 
-        boolean newGameOver = true;
-        score = 10000;
-        levelCompleted = 8;
-        bonus = 200;
+        highScorePosition = calculateHighScorePosition(900);
+        displayHighScorePosition("Raymond", highScorePosition);
 
-        if (score >= 10000) {
-            System.out.println("your score was equal to or greater than 10000.");
-        } else if (score < 10000) {
-            System.out.println("your score was less than 10000.");
-        }
+        highScorePosition = calculateHighScorePosition(400);
+        displayHighScorePosition("Bob", highScorePosition);
 
-        if (gameOver == true) {
-            int newFinalScore = score + (levelCompleted * bonus);
-            System.out.println("your final score was " + newFinalScore);
-        }
+        highScorePosition = calculateHighScorePosition(50);
+        displayHighScorePosition("Jeff", highScorePosition);
     }
+
+    public static void displayHighScorePosition(String playerName, int highScorePosition) {
+        System.out.println(playerName + " managed to get into position " + highScorePosition + " on the highscore table.");
+    }
+
+    public static int calculateHighScorePosition(int playerScore) {
+
+        // either method works to let the player know what position they are in based on their score.
+
+//        if (playerScore >= 1000) {
+//            return 1;
+//        } else if (playerScore >= 500) {
+//            return 2;
+//        } else if (playerScore >= 100) {
+//            return 3;
+//        } else {
+//            return 4;
+//        }
+
+        //Final code change.
+        int position = 4;
+
+        if (playerScore >= 1000) {
+            position = 1;
+        } else if (playerScore >= 500) {
+            position = 2;
+        } else if (playerScore >= 100) {
+            position = 1;
+        }
+        return position;
+    }
+
+    // creating methods.... CANNOT PUT A METHOD WITHIN A METHOD
+    public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus) {
+
+        if (gameOver) {
+            int finalScore = score + (levelCompleted * bonus);
+            finalScore += 2000;
+            System.out.println("your final score was " + finalScore);
+            return finalScore;
+        }
+
+        return -1;
+
+    }
+
+
 }
